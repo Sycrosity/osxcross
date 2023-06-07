@@ -21,6 +21,6 @@ RUN /bin/bash -c "cd /tmp && \
 
 RUN /bin/bash -c "useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
     service ssh start && \
-    mkdir -p "$HOME/.ssh/"
+    mkdir -p '$HOME/.ssh/'"
 
 CMD [ "/usr/sbin/sshd", "-D" ]
