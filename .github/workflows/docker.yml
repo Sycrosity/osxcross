@@ -1,5 +1,4 @@
-# You can also reference a tag or branch, but the action may change 
-without warning.
+# You can also reference a tag or branch, but the action may change without warning.
 
 name: Create and publish a Docker image
 
@@ -31,14 +30,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: 
-docker/metadata-action@c4ee3adeed93b1fa6a762f209fb01608c1a22f1e
+        uses: docker/metadata-action@c4ee3adeed93b1fa6a762f209fb01608c1a22f1e
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
-        uses: 
-docker/build-push-action@91df6b874e498451163feb47610c87c4a218c1ee
+        uses: docker/build-push-action@91df6b874e498451163feb47610c87c4a218c1ee
         with:
           context: .
           push: true
