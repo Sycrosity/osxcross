@@ -5,7 +5,7 @@ RUN /bin/bash -c "apt update -y -qq && \
     apt install -y clang llvm-dev libxml2-dev uuid-dev libssl-dev bash patch make \
     cmake tar xz-utils bzip2 gzip sed cpio libbz2-dev zlib1g-dev && \
     apt install -y clang pkg-config libx11-dev libasound2-dev libudev-dev && \
-    apt install -y lld libssl-dev lzma-dev libxml2-devel && \
+    apt install -y lld libssl-dev lzma-dev libxml2-dev && \
     apt install -y git"
 
 RUN /bin/bash -c " mkdir -p /usr/local/opt/llvm/bin/ && \
