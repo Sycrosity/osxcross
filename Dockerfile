@@ -5,7 +5,7 @@ RUN /bin/bash -c "apt update -y -qq && \
     apt install -y clang llvm-dev libxml2-dev uuid-dev libssl-dev bash patch make \
     cmake tar xz-utils bzip2 gzip sed cpio libbz2-dev zlib1g-dev && \
     apt install -y clang pkg-config libx11-dev libasound2-dev libudev-dev && \
-    apt install -y lld libssl-devel lzma-devel libxml2-devel && \
+    apt install -y lld libssl-dev lzma-dev libxml2-devel && \
     apt install -y git"
 
 RUN /bin/bash -c " mkdir -p /usr/local/opt/llvm/bin/ && \
@@ -21,7 +21,6 @@ RUN /bin/bash -c "cd /tmp && \
 
 RUN /bin/bash -c "useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
     service ssh start && \
-    mkdir -p "$HOME/.ssh/known_hosts/" && \
-    cp -r /etc/ssh-key/ $HOME/.ssh/known_hosts/"
+    mkdir -p "$HOME/.ssh/"
 
 CMD [ "/usr/sbin/sshd", "-D" ]
