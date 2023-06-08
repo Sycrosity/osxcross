@@ -19,9 +19,11 @@ RUN /bin/bash -c "cd /tmp && \
     cd osxcross && \
     UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh"
 
-RUN /bin/bash -c "useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
-    echo 'PasswordAuthentication no' > /etc/ssh/sshd_config && \
+    #useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
+RUN /bin/bash -c "echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
+    echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config && \
     service ssh start && \
-    mkdir -p '$HOME/.ssh/'"
+    mkdir -p '$HOME/.ssh/' && \
+    cp /etc/ssh-key/authorized_keys $HOME/.ssh/authorized_keys"
 
 CMD [ "/usr/sbin/sshd", "-D" ]
