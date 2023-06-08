@@ -21,6 +21,7 @@ RUN /bin/bash -c "echo 'PATH="/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc' &&
     [target.x86_64-apple-darwin]\n\
     linker = \"x86_64-apple-darwin22.2-clang\"\n\
     ar = \"x86_64-apple-darwin22.2-ar\"' > '$HOME/.cargo/config.toml' && \
+    echo 'CC=o64-clang' >> '$HOME/.bashrc' && \
     rustup target add x86_64-apple-darwin"
 
 
