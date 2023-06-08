@@ -6,7 +6,8 @@ RUN /bin/bash -c "apt update -y -qq && \
     cmake tar xz-utils bzip2 gzip sed cpio libbz2-dev zlib1g-dev && \
     apt install -y -qq clang pkg-config libx11-dev libasound2-dev libudev-dev && \
     apt install -y -qq lld libssl-dev lzma-dev libxml2-dev && \
-    apt install -y -qq git"
+    apt install -y -qq git && \
+    apt install rsync -y -qq"
 
 RUN /bin/bash -c "cd / && \
     git clone https://github.com/Sycrosity/osxcross && \
@@ -22,7 +23,6 @@ RUN /bin/bash -c " mkdir -p /usr/local/opt/llvm/bin/ && \
     linker = "x86_64-apple-darwin22.2-clang"\n\
     ar = "x86_64-apple-darwin22.2-ar"' > '$HOME/.cargo/config.toml' && \
     rustup target add x86_64-apple-darwin"
-# mkdir /osxcross 
 
     #useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
 RUN /bin/bash -c "service ssh start && \
