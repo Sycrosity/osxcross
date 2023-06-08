@@ -20,7 +20,7 @@ RUN /bin/bash -c "cd /tmp && \
     UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh"
 
 RUN /bin/bash -c "useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
-    echo 'PasswordAuthentication no' /etc/ssh/sshd_config && \
+    echo 'PasswordAuthentication no' > /etc/ssh/sshd_config && \
     service ssh start && \
     mkdir -p '$HOME/.ssh/'"
 
