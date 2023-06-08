@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+RUN /bin/bash -c "yes | unminimize"
+
 RUN /bin/bash -c "apt update -y -qq && \
     apt install -y -qq curl sudo openssh-server && \
     apt install -y -qq clang llvm-dev libxml2-dev uuid-dev libssl-dev bash patch make \
