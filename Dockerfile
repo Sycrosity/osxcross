@@ -8,22 +8,26 @@ RUN /bin/bash -c "apt update -y -qq && \
     apt install -y lld libssl-dev lzma-dev libxml2-dev && \
     apt install -y git"
 
+RUN /bin/bash -c "cd / && \
+    git clone https://github.com/Sycrosity/osxcross && \
+    cd /osxcross && \
+    UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh && \
+    PATH='/osxcross/target/bin:$PATH' && \
+    "
+
 RUN /bin/bash -c " mkdir -p /usr/local/opt/llvm/bin/ && \
-    ln -s /usr/bin/lld /usr/local/opt/llvm/bin/ld64.lld && \
+    ln -s /osxcross/target/bin/x86_64-apple-darwin22.2-clang /usr/local/opt/llvm/bin/ld64.lld && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     source '$HOME/.cargo/env' && \
     rustup target add x86_64-apple-darwin"
-
-RUN /bin/bash -c "cd /tmp && \
-    git clone https://github.com/Sycrosity/osxcross && \
-    cd osxcross && \
-    UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh"
+# mkdir /osxcross 
 
     #useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
-RUN /bin/bash -c "echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
+RUN /bin/bash -c "service ssh start && \
+    echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
     echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config && \
-    service ssh start && \
     mkdir -p '$HOME/.ssh/' && \
-    cp /etc/ssh-key/authorized_keys $HOME/.ssh/authorized_keys"
+    "
 
-CMD [ "/usr/sbin/sshd", "-D" ]
+ENTRYPOINT [ "/usr/sbin/sshd", "-D" ]
+# CMD [ "/usr/sbin/sshd", "-D" ]
