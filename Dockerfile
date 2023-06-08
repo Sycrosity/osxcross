@@ -12,10 +12,9 @@ RUN /bin/bash -c "apt update -y -qq && \
 RUN /bin/bash -c "cd / && \
     git clone https://github.com/Sycrosity/osxcross && \
     cd /osxcross && \
-    UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh && \
-    echo 'PATH="/tmp/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc'"
+    UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh"
 
-RUN /bin/bash -c " mkdir -p /usr/local/opt/llvm/bin/ && \
+RUN /bin/bash -c "echo 'PATH="/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc' && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     source '$HOME/.cargo/env' && \
     echo -e '\
