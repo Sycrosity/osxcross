@@ -24,6 +24,7 @@ RUN /bin/bash -c " mkdir -p /usr/local/opt/llvm/bin/ && \
     ar = "x86_64-apple-darwin22.2-ar"' > '$HOME/.cargo/config.toml' && \
     rustup target add x86_64-apple-darwin"
 
+
     #useradd -rm -d /home/vscode -s /bin/bash -g root -G sudo -u 1000 vscode && \
 RUN /bin/bash -c "service ssh start && \
     echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config && \
