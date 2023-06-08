@@ -17,11 +17,11 @@ RUN /bin/bash -c "cd / && \
 RUN /bin/bash -c "echo 'PATH="/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc' && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     source '$HOME/.cargo/env' && \
-    echo -e '\
-    [target.x86_64-apple-darwin]\n\
-    linker = \"x86_64-apple-darwin22.2-clang\"\n\
-    ar = \"x86_64-apple-darwin22.2-ar\"' > '$HOME/.cargo/config.toml' && \
-    echo 'CC=o64-clang' >> '$HOME/.bashrc' && \
+    echo -e '[target.x86_64-apple-darwin]\n\
+linker = \"x86_64-apple-darwin22.2-clang\"\n\
+ar = \"x86_64-apple-darwin22.2-ar\"\n\
+[env]\n\
+CC_x86_64-apple-darwin=\"o64-clang\"' > '$HOME/.cargo/config.toml' && \
     rustup target add x86_64-apple-darwin"
 
 
