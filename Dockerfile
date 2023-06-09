@@ -9,7 +9,7 @@ RUN /bin/bash -c "apt update -y -qq && \
     apt install -y -qq clang pkg-config libx11-dev libasound2-dev libudev-dev && \
     apt install -y -qq lld libssl-dev lzma-dev libxml2-dev && \
     apt install -y -qq git && \
-    apt install rsync -y -qq"
+    apt install rsync gpg -y -qq"
 
 RUN /bin/bash -c "cd / && \
     git clone https://github.com/Sycrosity/osxcross && \
