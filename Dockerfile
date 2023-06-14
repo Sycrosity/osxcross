@@ -23,7 +23,9 @@ RUN /bin/bash -c "echo 'PATH="/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc' &&
 linker = \"x86_64-apple-darwin22.2-clang\"\n\
 ar = \"x86_64-apple-darwin22.2-ar\"\n\
 [env]\n\
-CC_x86_64-apple-darwin=\"o64-clang\"' > '$HOME/.cargo/config.toml' && \
+CC_x86_64-apple-darwin=\"o64-clang\"\n\
+[install]\n\
+root = "/vscode/bin"' > '$HOME/.cargo/config.toml' && \
     rustup target add x86_64-apple-darwin"
 
 
