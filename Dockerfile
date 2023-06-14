@@ -16,7 +16,7 @@ RUN /bin/bash -c "cd / && \
     cd /osxcross && \
     UNATTENDED=yes OSX_VERSION_MIN=10.7 ./build.sh"
 
-RUN /bin/bash -c "echo 'PATH="/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc' && \
+RUN /bin/bash -c "echo 'PATH="/vscode/bin:/osxcross/target/bin:$PATH"' >> '$HOME/.bashrc' && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     source '$HOME/.cargo/env' && \
     echo -e '[target.x86_64-apple-darwin]\n\
@@ -25,7 +25,7 @@ ar = \"x86_64-apple-darwin22.2-ar\"\n\
 [env]\n\
 CC_x86_64-apple-darwin=\"o64-clang\"\n\
 [install]\n\
-root = "/vscode/bin"' > '$HOME/.cargo/config.toml' && \
+root = \"/vscode/bin\"' > '$HOME/.cargo/config.toml' && \
     rustup target add x86_64-apple-darwin"
 
 
